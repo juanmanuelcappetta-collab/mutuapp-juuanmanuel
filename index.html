@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UNI2 – Mutual Escolar CET 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --amarillo:#F5A623;
+  --azul:    #2B3DA8;
+  --rojo:    #E8201A;
+  --verde:   #2BAD4E;
+  --negro:   #111111;
+  --blanco:  #ffffff;
+  --gris-claro:#f4f5f8;
+  --gris-mid:#e0e3ec;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--blanco);color:var(--negro);overflow-x:hidden}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:var(--negro);
+  color:rgba(255,255,255,.6);
+  font-size:.75rem;letter-spacing:.5px;
+  padding:6px 5vw;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.topbar strong{color:var(--amarillo)}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--blanco);
+  border-bottom:3px solid var(--gris-mid);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:70px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-text .uni{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:var(--negro);letter-spacing:1px}
+.nav-logo-text .sub{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav ul a{
+  text-decoration:none;color:var(--negro);
+  font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  position:relative;padding-bottom:4px;
+  transition:color .2s;
+}
+nav ul a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:var(--rojo);transition:width .25s;
+}
+nav ul a:hover{color:var(--rojo)}
+nav ul a:hover::after{width:100%}
+.nav-cta{
+  background:var(--azul);color:var(--blanco)!important;
+  padding:9px 22px!important;border-radius:4px;
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--rojo)!important;color:var(--blanco)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:92vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:0 5vw;
+  position:relative;
+  overflow:hidden;
+  background:var(--blanco);
+}
+/* colored accent bars on the right */
+.hero-right{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:100%;
+}
+.hero-bg-shape{
+  position:absolute;right:-60px;top:0;bottom:0;width:110%;
+  background:var(--gris-claro);
+  clip-path:polygon(12% 0,100% 0,100% 100%,0% 100%);
+  z-index:0;
+}
+/* four-color stripe accent top */
+.color-bar{
+  position:absolute;top:0;left:0;right:0;height:5px;
+  display:flex;
+}
+.color-bar span{flex:1}
+.color-bar span:nth-child(1){background:var(--amarillo)}
+.color-bar span:nth-child(2){background:var(--azul)}
+.color-bar span:nth-child(3){background:var(--rojo)}
+.color-bar span:nth-child(4){background:var(--verde)}
+
+.hero-content{position:relative;z-index:1;max-width:520px}
+.hero-badge-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gris-claro);border-radius:100px;
+  padding:5px 14px 5px 5px;
+  margin-bottom:1.5rem;
+  font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+}
+.hero-badge-tag .dot{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--verde);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;
+}
+.hero h1{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  font-weight:700;line-height:1;
+  color:var(--negro);
+  margin-bottom:1.2rem;
+}
+.hero h1 .line-color{
+  display:inline;
+  background:linear-gradient(90deg,var(--amarillo) 0%,var(--rojo) 50%,var(--azul) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{
+  font-size:1rem;font-weight:400;color:#555;line-height:1.75;
+  max-width:440px;margin-bottom:2rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;
+  padding:13px 28px;border-radius:5px;
+  font-weight:700;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.btn-azul{background:var(--azul);color:var(--blanco)}
+.btn-outline{border:2px solid var(--negro);color:var(--negro)}
+.btn-outline:hover{background:var(--negro);color:var(--blanco)}
+
+/* BIG LOGO centered on right */
+.hero-logo-wrap{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  animation:floatLogo 5s ease-in-out infinite;
+}
+.hero-logo-wrap img{width:min(300px,38vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.12))}
+@keyframes floatLogo{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+
+/* ── SECCIÓN BASE ── */
+section{padding:90px 5vw}
+.section-label{
+  font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--rojo);margin-bottom:.5rem;
+}
+.section-title{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:700;
+  color:var(--negro);line-height:1.05;margin-bottom:.8rem;
+}
+.section-sub{font-size:.95rem;color:#666;line-height:1.75;max-width:500px;margin-bottom:3rem}
+
+/* ── BENEFICIOS ── */
+#beneficios{background:var(--gris-claro)}
+.benefits-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  margin-bottom:1.5rem;
+}
+.benefits-head .section-sub{margin-bottom:0}
+.benefits-note{
+  max-width:360px;background:var(--blanco);border-left:4px solid var(--verde);
+  padding:1rem 1.2rem;border-radius:8px;
+  font-size:.84rem;color:#555;line-height:1.55;
+  box-shadow:0 10px 28px rgba(0,0,0,.07);
+}
+.benefits-note strong{color:var(--negro)}
+.benefits-video{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+  gap:1.4rem;align-items:center;
+  background:var(--negro);color:var(--blanco);
+  border-radius:8px;padding:1.2rem;margin-bottom:1.6rem;
+  box-shadow:0 18px 42px rgba(0,0,0,.16);
+  overflow:hidden;position:relative;
+  animation:benefitIn .45s ease both;
+}
+.benefits-video::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:5px;
+  background:linear-gradient(90deg,var(--amarillo),var(--azul),var(--rojo),var(--verde));
+}
+.benefits-video-copy{position:relative;z-index:1;padding:.4rem}
+.benefits-video-copy h3{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.7rem,3vw,2.5rem);
+  line-height:1;margin-bottom:.6rem;
+}
+.benefits-video-copy p{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:420px}
+.benefits-video video{
+  width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;
+  background:#000;box-shadow:0 12px 30px rgba(0,0,0,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.benefits-video:hover video{transform:scale(1.015);box-shadow:0 18px 38px rgba(0,0,0,.45)}
+.benefit-tabs{
+  display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.6rem;
+}
+.benefit-tab{
+  border:2px solid var(--gris-mid);background:var(--blanco);color:var(--negro);
+  border-radius:999px;padding:.7rem 1rem;
+  font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;
+  letter-spacing:.4px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s,transform .15s;
+}
+.benefit-tab:hover{transform:translateY(-2px);border-color:var(--azul)}
+.benefit-tab.active{background:var(--negro);border-color:var(--negro);color:var(--blanco)}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1rem}
+.benefit-card{
+  --accent:var(--azul);
+  background:var(--blanco);border-radius:8px;
+  padding:0;border:1px solid var(--gris-mid);
+  border-top:5px solid var(--accent);
+  min-height:255px;display:flex;flex-direction:column;
+  transform:translateY(0);opacity:1;
+  transition:opacity .25s,transform .25s,box-shadow .2s,border-color .2s;
+  animation:benefitIn .35s ease both;
+  overflow:hidden;
+}
+.benefit-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.1)}
+.benefit-card.hide{display:none}
+.benefit-card.is-fading{opacity:0;transform:translateY(8px)}
+.benefit-card[data-category="educacion"]{--accent:var(--amarillo)}
+.benefit-card[data-category="deporte"]{--accent:var(--azul)}
+.benefit-card[data-category="gastronomia"]{--accent:var(--rojo)}
+.benefit-card[data-category="belleza"]{--accent:#9b4bd3}
+.benefit-card[data-category="comercios"]{--accent:var(--verde)}
+.benefit-image{
+  display:block;height:150px;background:var(--gris-claro);overflow:hidden;
+  border-bottom:1px solid var(--gris-mid);
+}
+.benefit-image img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  display:block;transition:transform .25s,filter .25s;
+}
+.benefit-card:hover .benefit-image img{transform:scale(1.04);filter:saturate(1.08)}
+.benefit-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+  padding:1rem 1rem 0;
+}
+.benefit-icon{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--accent) 14%,white);
+  color:var(--accent);font-size:1.35rem;flex-shrink:0;
+}
+.benefit-card h3{font-family:'Oswald',sans-serif;font-size:1.28rem;color:var(--negro);line-height:1.1}
+.benefit-category{
+  font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--accent);
+}
+.benefit-discount{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.55rem,3vw,2.1rem);
+  font-weight:700;line-height:1;color:var(--negro);margin:auto 1rem 1rem;
+}
+.benefit-doc{
+  color:var(--accent);font-size:.72rem;font-weight:800;
+  letter-spacing:.5px;text-transform:uppercase;text-decoration:none;
+  margin:0 1rem 1rem;
+}
+.benefit-doc:hover{text-decoration:underline}
+@keyframes benefitIn{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── STATS ── */
+#stats{
+  background:var(--negro);
+  padding:60px 5vw;
+}
+.stats-grid{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;text-align:center}
+.stat-item{flex:1;min-width:140px}
+.stat-num{
+  font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:700;line-height:1;margin-bottom:.3rem;
+}
+.stat-item:nth-child(1) .stat-num{color:var(--amarillo)}
+.stat-item:nth-child(2) .stat-num{color:var(--verde)}
+.stat-item:nth-child(3) .stat-num{color:var(--rojo)}
+.stat-item:nth-child(4) .stat-num{color:var(--azul)}
+.stat-label{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* ── CÓMO FUNCIONA ── */
+#como{background:var(--blanco)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.step-card{
+  border-radius:10px;padding:2rem 1.5rem;
+  background:var(--gris-claro);
+  position:relative;overflow:hidden;
+}
+.step-card::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+}
+.step-card:nth-child(1)::before{background:var(--amarillo)}
+.step-card:nth-child(2)::before{background:var(--azul)}
+.step-card:nth-child(3)::before{background:var(--rojo)}
+.step-card:nth-child(4)::before{background:var(--verde)}
+.step-num{
+  font-family:'Oswald',sans-serif;font-size:3rem;font-weight:700;
+  line-height:1;margin-bottom:.8rem;opacity:.15;
+}
+.step-card:nth-child(1) .step-num{color:var(--amarillo)}
+.step-card:nth-child(2) .step-num{color:var(--azul)}
+.step-card:nth-child(3) .step-num{color:var(--rojo)}
+.step-card:nth-child(4) .step-num{color:var(--verde)}
+.step-card h4{font-family:'Oswald',sans-serif;font-size:1.15rem;color:var(--negro);margin-bottom:.5rem}
+.step-card p{font-size:.85rem;color:#666;line-height:1.65}
+
+/* ── NOTICIAS ── */
+#noticias{background:var(--gris-claro)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem}
+.news-card{
+  background:var(--blanco);border-radius:10px;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.1)}
+.news-accent{height:6px;width:100%}
+.news-card:nth-child(1) .news-accent{background:var(--amarillo)}
+.news-card:nth-child(2) .news-accent{background:var(--azul)}
+.news-card:nth-child(3) .news-accent{background:var(--rojo)}
+.news-icon{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:var(--gris-claro)}
+.news-body{padding:1.4rem}
+.news-date{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rojo);margin-bottom:.4rem}
+.news-body h3{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--negro);margin-bottom:.4rem}
+.news-body p{font-size:.85rem;color:#666;line-height:1.6}
+
+/* ── CONTACTO ── */
+#contacto{background:var(--blanco)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info-top{margin-bottom:2rem}
+.contact-info-top h3{font-family:'Oswald',sans-serif;font-size:1.6rem;color:var(--negro);margin-bottom:1rem}
+.contact-row{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:.9rem}
+.contact-row .ico{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.contact-row p{font-size:.9rem;color:#555;line-height:1.55}
+/* colored blocks */
+.color-blocks{display:flex;gap:.6rem;margin-top:1.5rem}
+.cblock{
+  flex:1;height:6px;border-radius:100px;
+}
+.cblock:nth-child(1){background:var(--amarillo)}
+.cblock:nth-child(2){background:var(--azul)}
+.cblock:nth-child(3){background:var(--rojo)}
+.cblock:nth-child(4){background:var(--verde)}
+
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.contact-form input,
+.contact-form textarea{
+  padding:12px 16px;border:2px solid var(--gris-mid);border-radius:6px;
+  font-family:'Montserrat',sans-serif;font-size:.9rem;
+  background:var(--gris-claro);resize:vertical;
+  transition:border-color .2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{outline:none;border-color:var(--azul);background:var(--blanco)}
+.contact-form button{
+  align-self:flex-start;
+  background:var(--rojo);color:var(--blanco);border:none;cursor:pointer;
+  padding:13px 32px;border-radius:6px;
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;
+  letter-spacing:.5px;text-transform:uppercase;
+  transition:background .2s,transform .15s;
+}
+.contact-form button:hover{background:var(--azul);transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--negro);color:rgba(255,255,255,.5);
+  padding:2.5rem 5vw;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  text-align:center;font-size:.82rem;
+}
+footer .footer-logo{
+  display:flex;align-items:center;gap:10px;margin-bottom:.8rem;
+}
+footer .footer-logo img{width:40px;height:auto}
+footer .footer-logo-text{
+  font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;
+  color:var(--blanco);letter-spacing:1px;
+}
+footer .footer-colors{display:flex;gap:6px;margin:1rem 0}
+footer .fc{width:20px;height:4px;border-radius:100px}
+footer .fc:nth-child(1){background:var(--amarillo)}
+footer .fc:nth-child(2){background:var(--azul)}
+footer .fc:nth-child(3){background:var(--rojo)}
+footer .fc:nth-child(4){background:var(--verde)}
+
+/* ── LOGO ── */
+.logo-img{display:block;object-fit:contain}
+.nav-logo-img{width:42px;height:42px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding-top:80px;padding-bottom:60px;text-align:center}
+  .hero-right{display:none}
+  .hero-btns{justify-content:center}
+  .benefits-head{display:block}
+  .benefits-note{max-width:none;margin-top:1.2rem}
+  .benefits-video{grid-template-columns:1fr}
+  .benefit-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.3rem}
+  .benefit-tab{white-space:nowrap}
+  .contact-wrap{grid-template-columns:1fr}
+  nav ul{display:none}
+  .hero p{margin-left:auto;margin-right:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📍 General Roca, Río Negro</span>
+  <span>✉️ mutual@cet3.edu.ar &nbsp;|&nbsp; <strong>(02941) 000-000</strong></span>
+</div>
+
+<!-- COLOR BAR -->
+<div class="color-bar">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <img class="logo-img nav-logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    <div class="nav-logo-text">
+      <span class="uni">UNI2</span>
+      <span class="sub">Mutual CET 3</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto" class="nav-cta">Afiliarme</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge-tag">
+      <span class="dot">🤝</span>
+      Mutual Escolar · General Roca
+    </div>
+    <h1>
+      Juntos<br>
+      <span class="line-color">somos más</span><br>
+      fuertes
+    </h1>
+    <p>
+      UNI2 es la mutual de la comunidad CET 3. Apoyamos a alumnos,
+      docentes y familias con beneficios reales, solidaridad y unión.
+    </p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn btn-azul">Quiero afiliarme</a>
+      <a href="#beneficios" class="btn btn-outline">Ver beneficios</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-logo-wrap">
+      <img class="logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="benefits-head">
+    <div>
+      <p class="section-label">Convenios activos</p>
+      <h2 class="section-title">Beneficios por categoría</h2>
+      <p class="section-sub">Descuentos directos para socios de UNI2, organizados para encontrarlos rápido.</p>
+    </div>
+    <div class="benefits-note">
+      <strong>Cómo acceder:</strong> carnet social, cuotas al día y DNI.
+    </div>
+  </div>
+
+  <div class="benefit-tabs" aria-label="Filtrar beneficios por categoría">
+    <button class="benefit-tab active" type="button" data-filter="educacion">Educación</button>
+    <button class="benefit-tab" type="button" data-filter="deporte">Deporte</button>
+    <button class="benefit-tab" type="button" data-filter="gastronomia">Gastronomía</button>
+    <button class="benefit-tab" type="button" data-filter="belleza">Belleza</button>
+    <button class="benefit-tab" type="button" data-filter="comercios">Comercios</button>
+  </div>
+
+  <div class="benefits-video">
+    <div class="benefits-video-copy">
+      <p class="section-label">Mirá los beneficios</p>
+      <h3>Descuentos para socios UNI2</h3>
+      <p>Un resumen visual de los convenios disponibles para la comunidad del CET 3.</p>
+    </div>
+    <video controls preload="metadata" poster="logo-unidos-cet3.png">
+      <source src="videos/beneficios-mutual.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card" data-category="educacion">
+      <a class="benefit-image" href="beneficios/Convenio Academia Eureka.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Academia Eureka.jpeg" alt="Convenio Academia Eureka" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Educación</p>
+          <h3>Academia Eureka</h3>
+        </div>
+        <div class="benefit-icon">📚</div>
+      </div>
+      <div class="benefit-discount">10% OFF</div>
+    </div>
+
+    <div class="benefit-card" data-category="educacion">
+      <a class="benefit-image" href="beneficios/Convenio Libreria Muños.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Libreria Muños.jpeg" alt="Convenio Librería Muñoz" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Educación</p>
+          <h3>Librería Muñoz</h3>
+        </div>
+        <div class="benefit-icon">✏️</div>
+      </div>
+      <div class="benefit-discount">10% OFF útiles</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Deportivo Roca.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Deportivo Roca.jpeg" alt="Convenio Deportivo Roca" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Deportivo Roca</h3>
+        </div>
+        <div class="benefit-icon">🏟️</div>
+      </div>
+      <div class="benefit-discount">20% / 10% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Atleta Club Fitnnes.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Atleta Club Fitnnes.jpeg" alt="Convenio Atleta Club Fitness" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Atleta Club Fitness</h3>
+        </div>
+        <div class="benefit-icon">🏋️</div>
+      </div>
+      <div class="benefit-discount">20% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Utreras Team.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Utreras Team.jpeg" alt="Convenio Utreras Team" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Utreras Team</h3>
+        </div>
+        <div class="benefit-icon">🥋</div>
+      </div>
+      <div class="benefit-discount">20% OFF x 3 cuotas</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Atenas Gimnasio.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Atenas Gimnasio.jpeg" alt="Convenio Atenas Gimnasio" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Atenas Gimnasio</h3>
+        </div>
+        <div class="benefit-icon">💪</div>
+      </div>
+      <div class="benefit-discount">10% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Hugo Trainers Gimnasio.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Hugo Trainers Gimnasio.jpeg" alt="Convenio Hugo Trainers Gimnasio" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Hugo Trainers Gimnasio</h3>
+        </div>
+        <div class="benefit-icon">🏃</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio Oliva Casa de Comidas.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Oliva Casa de Comidas.jpeg" alt="Convenio Oliva Casa de Comidas" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>Oliva Casa de Comidas</h3>
+        </div>
+        <div class="benefit-icon">🍽️</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio Latte Cafeteria.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Latte Cafeteria.jpeg" alt="Convenio Latte Cafetería" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>Latte Cafetería</h3>
+        </div>
+        <div class="benefit-icon">☕</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio El Cielo.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio El Cielo.jpeg" alt="Convenio El Cielo" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>El Cielo</h3>
+        </div>
+        <div class="benefit-icon">🍦</div>
+      </div>
+      <div class="benefit-discount">15% OFF potes</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="belleza">
+      <a class="benefit-image" href="beneficios/Convenio Only Makeuup.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Only Makeuup.jpeg" alt="Convenio Only Makeup" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Belleza</p>
+          <h3>Only Makeup</h3>
+        </div>
+        <div class="benefit-icon">💄</div>
+      </div>
+      <div class="benefit-discount">15% OFF productos</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="belleza">
+      <a class="benefit-image" href="beneficios/Convenio Nails Yas.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Nails Yas.jpeg" alt="Convenio Nails Yas" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Belleza</p>
+          <h3>Nails Yas</h3>
+        </div>
+        <div class="benefit-icon">💅</div>
+      </div>
+      <div class="benefit-discount">Beneficio en uñas</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Alto Drugstore y Le Bron Break Store.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Alto Drugstore y Le Bron Break Store.jpeg" alt="Convenio Alto Drugstore y Le Bon Break Store" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Alto Drugstore y Le Bon Break Store</h3>
+        </div>
+        <div class="benefit-icon">🛒</div>
+      </div>
+      <div class="benefit-discount">10% OFF desde $5000</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Katja Handmade.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Katja Handmade.jpeg" alt="Convenio Katja Handmade" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Katja Handmade</h3>
+        </div>
+        <div class="benefit-icon">🎁</div>
+      </div>
+      <div class="benefit-discount">10% OFF productos</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Carolina´s Closet.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Carolina´s Closet.jpeg" alt="Convenio Carolina's Closet" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Carolina's Closet</h3>
+        </div>
+        <div class="benefit-icon">👕</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Estilo Runner.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Estilo Runner.jpeg" alt="Convenio Estilo Runner" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Estilo Runner</h3>
+        </div>
+        <div class="benefit-icon">👟</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio C.E.C.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio C.E.C.jpeg" alt="Convenio C.E.C." loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>C.E.C.</h3>
+        </div>
+        <div class="benefit-icon">🏪</div>
+      </div>
+      <div class="benefit-discount">13% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/10-descuento-efectivo.pdf" target="_blank" rel="noopener"><img src="logo-unidos-cet3.png" alt="10% de descuento en efectivo" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Descuento en efectivo</h3>
+        </div>
+        <div class="benefit-icon">💵</div>
+      </div>
+      <div class="benefit-discount">10% OFF efectivo</div>
+      <a class="benefit-doc" href="beneficios/10-descuento-efectivo.pdf" target="_blank" rel="noopener">Ver PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">850+</div>
+      <div class="stat-label">Afiliados activos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">120</div>
+      <div class="stat-label">Becas otorgadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$2M</div>
+      <div class="stat-label">En subsidios anuales</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15</div>
+      <div class="stat-label">Años de historia</div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como">
+  <p class="section-label">Paso a paso</p>
+  <h2 class="section-title">Cómo funciona</h2>
+  <p class="section-sub">Unirte a UNI2 es simple, rápido y sin complicaciones.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h4>Completá el formulario</h4>
+      <p>Ingresá tus datos y los de tu grupo familiar en nuestra sede o en línea.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h4>Abonás la cuota social</h4>
+      <p>Una cuota mensual simbólica que te da acceso inmediato a todos los beneficios.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h4>Recibís tu credencial</h4>
+      <p>Tu carnet de afiliado para usar todos los servicios desde el primer día.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h4>¡Disfrutá!</h4>
+      <p>Accedé a subsidios, préstamos, descuentos y actividades todo el año.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section id="noticias">
+  <p class="section-label">Últimas novedades</p>
+  <h2 class="section-title">Noticias de UNI2</h2>
+  <p class="section-sub">Enterate de todo lo que pasa en nuestra comunidad.</p>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">🏆</div>
+      <div class="news-body">
+        <p class="news-date">Mayo 2025</p>
+        <h3>Entrega de becas de excelencia 2025</h3>
+        <p>Ceremonia de reconocimiento a los mejores promedios, con presencia de autoridades y familias.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">⚙️</div>
+      <div class="news-body">
+        <p class="news-date">Marzo 2025</p>
+        <h3>Nuevo subsidio de útiles escolares</h3>
+        <p>Ampliamos el monto del subsidio inicial para todos los alumnos afiliados de primer año.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">🤝</div>
+      <div class="news-body">
+        <p class="news-date">Febrero 2025</p>
+        <h3>Apertura de inscripciones 2025</h3>
+        <p>Ya podés renovar tu afiliación o sumarte por primera vez. Puertas abiertas para toda la comunidad CET 3.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label">Hablemos</p>
+  <h2 class="section-title">Contacto y afiliación</h2>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-info-top">
+        <h3>Encontranos en la escuela</h3>
+        <div class="contact-row"><span class="ico">📍</span><p>Centro de Educación Técnica N° 3<br>General Roca, Río Negro</p></div>
+        <div class="contact-row"><span class="ico">🕗</span><p>Lunes a viernes: 8:00 a 17:00 hs<br>Sábados: 9:00 a 12:00 hs</p></div>
+        <div class="contact-row"><span class="ico">📞</span><p>(02941) 000-000</p></div>
+        <div class="contact-row"><span class="ico">✉️</span><p>mutual@cet3.edu.ar</p></div>
+        <div class="color-blocks"><div class="cblock"></div><div class="cblock"></div><div class="cblock"></div><div class="cblock"></div></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Tu nombre completo"/>
+      <input type="email" placeholder="Correo electrónico"/>
+      <input type="text" placeholder="Teléfono (opcional)"/>
+      <textarea rows="4" placeholder="Tu mensaje o consulta..."></textarea>
+      <button type="button">Enviar consulta</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img class="logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    <span class="footer-logo-text">UNI2 – Mutual Escolar CET 3</span>
+  </div>
+  <div class="footer-colors">
+    <div class="fc"></div><div class="fc"></div><div class="fc"></div><div class="fc"></div>
+  </div>
+  <p>© 2025 UNI2 Mutual Escolar CET N° 3 · General Roca, Río Negro</p>
+  <p>Hecho con ❤️ por y para la comunidad educativa del CET 3</p>
+</footer>
+
+<script>
+const benefitTabs = document.querySelectorAll('.benefit-tab');
+const benefitCards = document.querySelectorAll('.benefit-card');
+
+benefitTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const filter = tab.dataset.filter;
+
+    benefitTabs.forEach((item) => item.classList.remove('active'));
+    tab.classList.add('active');
+
+    benefitCards.forEach((card, index) => {
+      const show = card.dataset.category === filter;
+      card.classList.add('is-fading');
+
+      setTimeout(() => {
+        card.classList.toggle('hide', !show);
+        card.style.animationDelay = show ? `${index * 25}ms` : '0ms';
+        card.classList.remove('is-fading');
+      }, 160);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+
+
+
