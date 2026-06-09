@@ -124,9 +124,17 @@ nav ul a:hover::after{width:100%}
 .hero-logo-wrap{
   position:relative;z-index:1;
   display:flex;flex-direction:column;align-items:center;
+  padding:1.2rem;
+  border-radius:8px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 20px 46px rgba(0,0,0,.14);
   animation:floatLogo 5s ease-in-out infinite;
 }
-.hero-logo-wrap img{width:min(300px,38vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.12))}
+.hero-logo-wrap img{
+  width:min(184px,34vw);
+  height:auto;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.1));
+}
 @keyframes floatLogo{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-14px)}
@@ -563,8 +571,13 @@ footer .fc:nth-child(3){background:var(--rojo)}
 footer .fc:nth-child(4){background:var(--verde)}
 
 /* ── LOGO ── */
-.logo-img{display:block;object-fit:contain}
-.nav-logo-img{width:42px;height:42px}
+.logo-img{
+  display:block;
+  object-fit:contain;
+  image-rendering:auto;
+  transform:translateZ(0);
+}
+.nav-logo-img{width:42px;height:45px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
@@ -661,12 +674,12 @@ footer .fc:nth-child(4){background:var(--verde)}
 
   <div class="benefits-video">
     <div class="benefits-video-copy">
-      <p class="section-label">Mirá los beneficios</p>
-      <h3>Descuentos para socios UNI2</h3>
-      <p>Un resumen visual de los convenios disponibles para la comunidad del CET 3.</p>
+      <p class="section-label">Video institucional</p>
+      <h3>UNI2 Mutual Escolar CET 3</h3>
+      <p>Una presentación para conocer la identidad, el trabajo y la participación de nuestra comunidad.</p>
     </div>
     <video controls preload="metadata" poster="logo-unidos-cet3.png">
-      <source src="videos/beneficios-mutual.mp4" type="video/mp4"/>
+      <source src="videos/video-institucional-uni2.mp4" type="video/mp4"/>
     </video>
   </div>
 
@@ -1281,4 +1294,3 @@ updateAffiliationType();
 
 </body>
 </html>
-
