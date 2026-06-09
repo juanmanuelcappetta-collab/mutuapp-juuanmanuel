@@ -1,1 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UNI2 – Mutual Escolar CET 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --amarillo:#F5A623;
+  --azul:    #2B3DA8;
+  --rojo:    #E8201A;
+  --verde:   #2BAD4E;
+  --negro:   #111111;
+  --blanco:  #ffffff;
+  --gris-claro:#f4f5f8;
+  --gris-mid:#e0e3ec;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--blanco);color:var(--negro);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--blanco);
+  border-bottom:3px solid var(--gris-mid);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:70px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-text .uni{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:var(--negro);letter-spacing:1px}
+.nav-logo-text .sub{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav ul a{
+  text-decoration:none;color:var(--negro);
+  font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  position:relative;padding-bottom:4px;
+  transition:color .2s;
+}
+nav ul a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:var(--rojo);transition:width .25s;
+}
+nav ul a:hover{color:var(--rojo)}
+nav ul a:hover::after{width:100%}
+.nav-cta{
+  background:var(--azul);color:var(--blanco)!important;
+  padding:9px 22px!important;border-radius:4px;
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--rojo)!important;color:var(--blanco)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:92vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:0 5vw;
+  position:relative;
+  overflow:hidden;
+  background:var(--blanco);
+}
+/* colored accent bars on the right */
+.hero-right{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:100%;
+}
+.hero-bg-shape{
+  position:absolute;right:-60px;top:0;bottom:0;width:110%;
+  background:var(--gris-claro);
+  clip-path:polygon(12% 0,100% 0,100% 100%,0% 100%);
+  z-index:0;
+}
+.hero-content{position:relative;z-index:1;max-width:520px}
+.hero-badge-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gris-claro);border-radius:100px;
+  padding:5px 14px 5px 5px;
+  margin-bottom:1.5rem;
+  font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+}
+.hero-badge-tag .dot{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--verde);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;
+}
+.hero h1{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  font-weight:700;line-height:1;
+  color:var(--negro);
+  margin-bottom:1.2rem;
+}
+.hero h1 .line-color{
+  display:inline;
+  background:linear-gradient(90deg,var(--amarillo) 0%,var(--rojo) 50%,var(--azul) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{
+  font-size:1rem;font-weight:400;color:#555;line-height:1.75;
+  max-width:440px;margin-bottom:2rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;
+  padding:13px 28px;border-radius:5px;
+  font-weight:700;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.btn-azul{background:var(--azul);color:var(--blanco)}
+.btn-outline{border:2px solid var(--negro);color:var(--negro)}
+.btn-outline:hover{background:var(--negro);color:var(--blanco)}
+
+/* BIG LOGO centered on right */
+.hero-logo-wrap{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  animation:floatLogo 5s ease-in-out infinite;
+}
+.hero-logo-wrap img{width:min(300px,38vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.12))}
+@keyframes floatLogo{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+
+/* ── SECCIÓN BASE ── */
+section{padding:90px 5vw}
+.section-label{
+  font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--rojo);margin-bottom:.5rem;
+}
+.section-title{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:700;
+  color:var(--negro);line-height:1.05;margin-bottom:.8rem;
+}
+.section-sub{font-size:.95rem;color:#666;line-height:1.75;max-width:500px;margin-bottom:3rem}
+
+/* ── BENEFICIOS ── */
+#beneficios{background:var(--gris-claro)}
+.benefits-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  margin-bottom:1.5rem;
+}
+.benefits-head .section-sub{margin-bottom:0}
+.benefits-note{
+  max-width:360px;background:var(--blanco);border-left:4px solid var(--verde);
+  padding:1rem 1.2rem;border-radius:8px;
+  font-size:.84rem;color:#555;line-height:1.55;
+  box-shadow:0 10px 28px rgba(0,0,0,.07);
+}
+.benefits-note strong{color:var(--negro)}
+.benefits-video{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+  gap:1.4rem;align-items:center;
+  background:var(--negro);color:var(--blanco);
+  border-radius:8px;padding:1.2rem;margin-bottom:1.6rem;
+  box-shadow:0 18px 42px rgba(0,0,0,.16);
+  overflow:hidden;position:relative;
+  animation:benefitIn .45s ease both;
+}
+.benefits-video::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:5px;
+  background:linear-gradient(90deg,var(--amarillo),var(--azul),var(--rojo),var(--verde));
+}
+.benefits-video-copy{position:relative;z-index:1;padding:.4rem}
+.benefits-video-copy h3{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.7rem,3vw,2.5rem);
+  line-height:1;margin-bottom:.6rem;
+}
+.benefits-video-copy p{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:420px}
+.benefits-video video{
+  width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;
+  background:#000;box-shadow:0 12px 30px rgba(0,0,0,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.benefits-video:hover video{transform:scale(1.015);box-shadow:0 18px 38px rgba(0,0,0,.45)}
+.benefit-tabs{
+  display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.6rem;
+}
+.benefit-tab{
+  border:2px solid var(--gris-mid);background:var(--blanco);color:var(--negro);
+  border-radius:999px;padding:.7rem 1rem;
+  font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;
+  letter-spacing:.4px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s,transform .15s;
+}
+.benefit-tab:hover{transform:translateY(-2px);border-color:var(--azul)}
+.benefit-tab.active{background:var(--negro);border-color:var(--negro);color:var(--blanco)}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1rem}
+.benefit-card{
+  --accent:var(--azul);
+  background:var(--blanco);border-radius:8px;
+  padding:0;border:1px solid var(--gris-mid);
+  border-top:5px solid var(--accent);
+  min-height:255px;display:flex;flex-direction:column;
+  transform:translateY(0);opacity:1;
+  transition:opacity .25s,transform .25s,box-shadow .2s,border-color .2s;
+  animation:benefitIn .35s ease both;
+  overflow:hidden;
+}
+.benefit-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.1)}
+.benefit-card.hide{display:none}
+.benefit-card.is-fading{opacity:0;transform:translateY(8px)}
+.benefit-card[data-category="educacion"]{--accent:var(--amarillo)}
+.benefit-card[data-category="deporte"]{--accent:var(--azul)}
+.benefit-card[data-category="gastronomia"]{--accent:var(--rojo)}
+.benefit-card[data-category="belleza"]{--accent:#9b4bd3}
+.benefit-card[data-category="comercios"]{--accent:var(--verde)}
+.benefit-image{
+  display:block;height:150px;background:var(--gris-claro);overflow:hidden;
+  border-bottom:1px solid var(--gris-mid);
+}
+.benefit-image-logo{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;
+  background:var(--gris-claro);
+}
+.benefit-image-logo::after{
+  content:'';position:absolute;inset:-45% auto auto -55%;
+  width:52%;height:190%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  transform:rotate(22deg);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s,left .55s;
+}
+.benefit-image img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  display:block;transition:transform .25s,filter .25s;
+}
+.benefit-card:hover .benefit-image img{transform:scale(1.04);filter:saturate(1.08)}
+.benefit-image img.benefit-logo{
+  width:100%;
+  height:100%;
+  position:relative;
+  z-index:1;
+  object-fit:cover;
+  object-position:center;
+  animation:logoSettle .42s ease both;
+}
+.benefit-card:hover .benefit-image-logo::after{left:112%;opacity:1}
+.benefit-card:hover .benefit-image img.benefit-logo{
+  transform:translateY(-3px) scale(1.035);
+  filter:saturate(1.08) contrast(1.03);
+}
+@keyframes logoSettle{
+  from{opacity:0;transform:scale(.92) translateY(8px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+.benefit-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+  padding:1rem 1rem 0;
+}
+.benefit-icon{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--accent) 14%,white);
+  color:var(--accent);font-size:1.35rem;flex-shrink:0;
+}
+.benefit-card h3{font-family:'Oswald',sans-serif;font-size:1.28rem;color:var(--negro);line-height:1.1}
+.benefit-category{
+  font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--accent);
+}
+.benefit-discount{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.55rem,3vw,2.1rem);
+  font-weight:700;line-height:1;color:var(--negro);margin:auto 1rem 1rem;
+}
+.benefit-doc{
+  color:var(--accent);font-size:.72rem;font-weight:800;
+  letter-spacing:.5px;text-transform:uppercase;text-decoration:none;
+  margin:0 1rem 1rem;
+}
+.benefit-doc:hover{text-decoration:underline}
+@keyframes benefitIn{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── PROYECTO ── */
+#proyecto{
+  background:var(--negro);
+  color:var(--blanco);
+  padding:80px 5vw;
+}
+.project-wrap{
+  display:grid;grid-template-columns:minmax(0,.8fr) minmax(340px,1.2fr);
+  gap:2rem;align-items:center;
+}
+#proyecto .section-label{color:var(--amarillo)}
+#proyecto .section-title{color:var(--blanco)}
+#proyecto .section-sub{color:rgba(255,255,255,.68);margin-bottom:1.4rem}
+.project-lines{display:grid;gap:.8rem}
+.project-line{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.86rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
+  color:rgba(255,255,255,.82);
+}
+.project-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.project-line:nth-child(1) .project-dot{background:var(--amarillo)}
+.project-line:nth-child(2) .project-dot{background:var(--azul)}
+.project-line:nth-child(3) .project-dot{background:var(--rojo)}
+.project-line:nth-child(4) .project-dot{background:var(--verde)}
+.project-modules{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.9rem;
+}
+.project-module{
+  min-height:150px;
+  border-radius:8px;
+  padding:1rem;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  position:relative;overflow:hidden;
+}
+.project-module::before{
+  content:'';position:absolute;left:0;top:0;width:100%;height:5px;
+  background:var(--module-color);
+}
+.project-module:nth-child(1){--module-color:var(--amarillo)}
+.project-module:nth-child(2){--module-color:var(--azul)}
+.project-module:nth-child(3){--module-color:var(--rojo)}
+.project-module:nth-child(4){--module-color:var(--verde)}
+.project-module:nth-child(5){--module-color:var(--amarillo)}
+.project-module:nth-child(6){--module-color:var(--azul)}
+.project-module-icon{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--module-color);
+  color:var(--blanco);
+  font-size:1.2rem;margin-bottom:1rem;
+}
+.project-module h3{
+  font-family:'Oswald',sans-serif;
+  font-size:1.2rem;color:var(--blanco);margin-bottom:.35rem;
+}
+.project-module p{font-size:.78rem;color:rgba(255,255,255,.66);line-height:1.55}
+
+/* ── CÓMO FUNCIONA ── */
+#como{background:var(--blanco)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.step-card{
+  border-radius:10px;padding:2rem 1.5rem;
+  background:var(--gris-claro);
+  position:relative;overflow:hidden;
+}
+.step-card::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+}
+.step-card:nth-child(1)::before{background:var(--amarillo)}
+.step-card:nth-child(2)::before{background:var(--azul)}
+.step-card:nth-child(3)::before{background:var(--rojo)}
+.step-card:nth-child(4)::before{background:var(--verde)}
+.step-num{
+  font-family:'Oswald',sans-serif;font-size:3rem;font-weight:700;
+  line-height:1;margin-bottom:.8rem;opacity:.15;
+}
+.step-card:nth-child(1) .step-num{color:var(--amarillo)}
+.step-card:nth-child(2) .step-num{color:var(--azul)}
+.step-card:nth-child(3) .step-num{color:var(--rojo)}
+.step-card:nth-child(4) .step-num{color:var(--verde)}
+.step-card h4{font-family:'Oswald',sans-serif;font-size:1.15rem;color:var(--negro);margin-bottom:.5rem}
+.step-card p{font-size:.85rem;color:#666;line-height:1.65}
+
+/* ── NOTICIAS ── */
+#noticias{background:var(--gris-claro)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem}
+.news-card{
+  background:var(--blanco);border-radius:10px;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.1)}
+.news-accent{height:6px;width:100%}
+.news-card:nth-child(1) .news-accent{background:var(--amarillo)}
+.news-card:nth-child(2) .news-accent{background:var(--azul)}
+.news-card:nth-child(3) .news-accent{background:var(--rojo)}
+.news-icon{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:var(--gris-claro)}
+.news-body{padding:1.4rem}
+.news-date{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rojo);margin-bottom:.4rem}
+.news-body h3{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--negro);margin-bottom:.4rem}
+.news-body p{font-size:.85rem;color:#666;line-height:1.6}
+
+/* ── CONTACTO ── */
+#contacto{background:var(--blanco)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info-top{margin-bottom:2rem}
+.contact-info-top h3{font-family:'Oswald',sans-serif;font-size:1.6rem;color:var(--negro);margin-bottom:1rem}
+.contact-row{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:.9rem}
+.contact-row .ico{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.contact-row p{font-size:.9rem;color:#555;line-height:1.55}
+/* colored blocks */
+.color-blocks{display:flex;gap:.6rem;margin-top:1.5rem}
+.cblock{
+  flex:1;height:6px;border-radius:100px;
+}
+.cblock:nth-child(1){background:var(--amarillo)}
+.cblock:nth-child(2){background:var(--azul)}
+.cblock:nth-child(3){background:var(--rojo)}
+.cblock:nth-child(4){background:var(--verde)}
+
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.contact-form input,
+.contact-form textarea{
+  padding:12px 16px;border:2px solid var(--gris-mid);border-radius:6px;
+  font-family:'Montserrat',sans-serif;font-size:.9rem;
+  background:var(--gris-claro);resize:vertical;
+  transition:border-color .2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{outline:none;border-color:var(--azul);background:var(--blanco)}
+.contact-form button{
+  align-self:flex-start;
+  background:var(--rojo);color:var(--blanco);border:none;cursor:pointer;
+  padding:13px 32px;border-radius:6px;
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;
+  letter-spacing:.5px;text-transform:uppercase;
+  transition:background .2s,transform .15s;
+}
+.contact-form button:hover{background:var(--azul);transform:translateY(-2px)}
+
+.affiliation-card{
+  border:2px solid var(--gris-mid);
+  border-radius:8px;
+  padding:1.4rem;
+  background:linear-gradient(180deg,var(--blanco),var(--gris-claro));
+}
+.affiliation-card h3{
+  font-family:'Oswald',sans-serif;
+  font-size:1.55rem;
+  color:var(--negro);
+  margin-bottom:.6rem;
+}
+.affiliation-card p{font-size:.9rem;color:#555;line-height:1.65;margin-bottom:1rem}
+.affiliation-list{display:grid;gap:.65rem;margin:1.1rem 0 1.4rem;list-style:none}
+.affiliation-list li{display:flex;align-items:center;gap:.65rem;font-size:.86rem;font-weight:700;color:#333}
+.affiliation-list span{
+  width:22px;height:22px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--azul);color:var(--blanco);font-size:.72rem;flex-shrink:0;
+}
+.affiliation-open{
+  border:none;background:var(--azul);color:var(--blanco);cursor:pointer;
+  padding:13px 24px;border-radius:6px;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;
+  letter-spacing:.5px;text-transform:uppercase;
+  transition:background .2s,transform .15s,box-shadow .15s;
+}
+.affiliation-open:hover{background:var(--rojo);transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.14)}
+
+.affiliation-modal{
+  width:min(920px,calc(100vw - 28px));
+  max-height:92vh;
+  border:none;border-radius:8px;
+  padding:0;
+  box-shadow:0 28px 80px rgba(0,0,0,.35);
+  color:var(--negro);
+}
+.affiliation-modal::backdrop{background:rgba(17,17,17,.58);backdrop-filter:blur(3px)}
+.affiliation-shell{display:grid;grid-template-columns:.85fr 1.45fr;background:var(--blanco)}
+.affiliation-side{
+  background:var(--negro);
+  color:var(--blanco);
+  padding:2rem;
+  position:relative;
+  overflow:hidden;
+}
+.affiliation-side::after{
+  content:'';
+  position:absolute;left:0;right:0;bottom:0;height:8px;
+  background:linear-gradient(90deg,var(--amarillo),var(--azul),var(--rojo),var(--verde));
+}
+.affiliation-side img{width:74px;height:auto;margin-bottom:1.2rem;background:var(--blanco);border-radius:6px;padding:6px}
+.affiliation-side h3{font-family:'Oswald',sans-serif;font-size:1.85rem;line-height:1.05;margin-bottom:.9rem}
+.affiliation-side p{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.7}
+.affiliation-form-wrap{padding:1.6rem}
+.affiliation-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.affiliation-head p{font-size:.75rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--rojo);margin-bottom:.25rem}
+.affiliation-head h2{font-family:'Oswald',sans-serif;font-size:1.8rem;color:var(--negro)}
+.modal-close{
+  width:38px;height:38px;border:2px solid var(--gris-mid);border-radius:6px;
+  background:var(--blanco);cursor:pointer;font-size:1.4rem;line-height:1;
+}
+.modal-close:hover{border-color:var(--rojo);color:var(--rojo)}
+.affiliation-form{display:grid;gap:1rem}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.field{display:flex;flex-direction:column;gap:.35rem}
+.field-full{grid-column:1/-1}
+.field.is-hidden{display:none}
+.field label{font-size:.73rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#555}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:11px 12px;
+  border:2px solid var(--gris-mid);
+  border-radius:6px;
+  background:var(--gris-claro);
+  font-family:'Montserrat',sans-serif;
+  font-size:.9rem;
+  color:var(--negro);
+}
+.field textarea{resize:vertical;min-height:74px}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{outline:none;border-color:var(--azul);background:var(--blanco)}
+.consent{
+  display:flex;gap:.7rem;align-items:flex-start;
+  padding:.85rem;border:1px solid var(--gris-mid);border-radius:6px;background:var(--gris-claro);
+  font-size:.82rem;color:#555;line-height:1.5;
+}
+.consent input{margin-top:3px;accent-color:var(--azul)}
+.form-actions{display:flex;gap:.8rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.form-actions button{
+  border:none;border-radius:6px;cursor:pointer;
+  padding:12px 20px;
+  font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+}
+.form-actions .secondary{background:var(--gris-claro);color:var(--negro);border:2px solid var(--gris-mid)}
+.form-actions .primary{background:var(--rojo);color:var(--blanco)}
+.form-actions .primary:hover{background:var(--azul)}
+.affiliation-status{
+  display:none;
+  padding:.85rem 1rem;
+  border-radius:6px;
+  background:#eef8f1;
+  color:#1d6f35;
+  font-size:.88rem;
+  font-weight:700;
+}
+.affiliation-status.show{display:block}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--negro);color:rgba(255,255,255,.5);
+  padding:2.5rem 5vw;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  text-align:center;font-size:.82rem;
+}
+footer .footer-logo{
+  display:flex;align-items:center;gap:10px;margin-bottom:.8rem;
+}
+footer .footer-logo img{width:40px;height:auto}
+footer .footer-logo-text{
+  font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;
+  color:var(--blanco);letter-spacing:1px;
+}
+footer .footer-colors{display:flex;gap:6px;margin:1rem 0}
+footer .fc{width:20px;height:4px;border-radius:100px}
+footer .fc:nth-child(1){background:var(--amarillo)}
+footer .fc:nth-child(2){background:var(--azul)}
+footer .fc:nth-child(3){background:var(--rojo)}
+footer .fc:nth-child(4){background:var(--verde)}
+
+/* ── LOGO ── */
+.logo-img{display:block;object-fit:contain}
+.nav-logo-img{width:42px;height:42px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding-top:80px;padding-bottom:60px;text-align:center}
+  .hero-right{display:none}
+  .hero-btns{justify-content:center}
+  .benefits-head{display:block}
+  .benefits-note{max-width:none;margin-top:1.2rem}
+  .benefits-video{grid-template-columns:1fr}
+  .project-wrap{grid-template-columns:1fr}
+  .project-modules{grid-template-columns:1fr}
+  .benefit-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.3rem}
+  .benefit-tab{white-space:nowrap}
+  .contact-wrap{grid-template-columns:1fr}
+  .affiliation-shell{grid-template-columns:1fr}
+  .affiliation-side{padding:1.4rem}
+  .form-grid{grid-template-columns:1fr}
+  .affiliation-form-wrap{padding:1.2rem}
+  nav ul{display:none}
+  .hero p{margin-left:auto;margin-right:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <img class="logo-img nav-logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    <div class="nav-logo-text">
+      <span class="uni">UNI2</span>
+      <span class="sub">Mutual CET 3</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#proyecto">Proyecto</a></li>
+    <li><a href="#noticias">Comunidad</a></li>
+    <li><a href="#afiliacion" class="nav-cta" data-open-affiliation>Afiliarme</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge-tag">
+      <span class="dot">🤝</span>
+      Mutual Escolar · General Roca
+    </div>
+    <h1>
+      Juntos<br>
+      <span class="line-color">somos más</span><br>
+      fuertes
+    </h1>
+    <p>
+      UNI2 es la mutual de la comunidad CET 3. Apoyamos a alumnos,
+      docentes y familias con beneficios reales, solidaridad y unión.
+    </p>
+    <div class="hero-btns">
+      <a href="#afiliacion" class="btn btn-azul" data-open-affiliation>Quiero afiliarme</a>
+      <a href="#beneficios" class="btn btn-outline">Ver beneficios</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-logo-wrap">
+      <img class="logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="benefits-head">
+    <div>
+      <p class="section-label">Convenios activos</p>
+      <h2 class="section-title">Beneficios por categoría</h2>
+      <p class="section-sub">Descuentos directos para socios de UNI2, organizados para encontrarlos rápido.</p>
+    </div>
+    <div class="benefits-note">
+      <strong>Cómo acceder:</strong> carnet social, cuotas al día y DNI.
+    </div>
+  </div>
+
+  <div class="benefit-tabs" aria-label="Filtrar beneficios por categoría">
+    <button class="benefit-tab active" type="button" data-filter="educacion">Educación</button>
+    <button class="benefit-tab" type="button" data-filter="deporte">Deporte</button>
+    <button class="benefit-tab" type="button" data-filter="gastronomia">Gastronomía</button>
+    <button class="benefit-tab" type="button" data-filter="belleza">Belleza</button>
+    <button class="benefit-tab" type="button" data-filter="comercios">Comercios</button>
+  </div>
+
+  <div class="benefits-video">
+    <div class="benefits-video-copy">
+      <p class="section-label">Mirá los beneficios</p>
+      <h3>Descuentos para socios UNI2</h3>
+      <p>Un resumen visual de los convenios disponibles para la comunidad del CET 3.</p>
+    </div>
+    <video controls preload="metadata" poster="logo-unidos-cet3.png">
+      <source src="videos/beneficios-mutual.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card" data-category="educacion">
+      <a class="benefit-image benefit-image-logo" href="assets/convenios/academia-eureka.jpg" target="_blank" rel="noopener"><img class="benefit-logo" src="assets/convenios/academia-eureka-card.png" alt="Logo Academia Eureka" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Educación</p>
+          <h3>Academia Eureka</h3>
+        </div>
+        <div class="benefit-icon">📚</div>
+      </div>
+      <div class="benefit-discount">10% OFF</div>
+    </div>
+
+    <div class="benefit-card" data-category="educacion">
+      <a class="benefit-image benefit-image-logo" href="assets/convenios/libreria-munoz.jpg" target="_blank" rel="noopener"><img class="benefit-logo" src="assets/convenios/libreria-munoz-card.png" alt="Logo Librería Muñoz" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Educación</p>
+          <h3>Librería Muñoz</h3>
+        </div>
+        <div class="benefit-icon">✏️</div>
+      </div>
+      <div class="benefit-discount">10% OFF útiles</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image benefit-image-logo" href="assets/convenios/deportivo-roca.png" target="_blank" rel="noopener"><img class="benefit-logo" src="assets/convenios/deportivo-roca-card.png" alt="Logo Deportivo Roca" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Deportivo Roca</h3>
+        </div>
+        <div class="benefit-icon">🏟️</div>
+      </div>
+      <div class="benefit-discount">20% / 10% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image benefit-image-logo" href="assets/convenios/atleta-club-fitness.png" target="_blank" rel="noopener"><img class="benefit-logo" src="assets/convenios/atleta-club-fitness-card.png" alt="Logo Atleta Club Fitness" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Atleta Club Fitness</h3>
+        </div>
+        <div class="benefit-icon">🏋️</div>
+      </div>
+      <div class="benefit-discount">20% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Utreras Team.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Utreras Team.jpeg" alt="Convenio Utreras Team" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Utreras Team</h3>
+        </div>
+        <div class="benefit-icon">🥋</div>
+      </div>
+      <div class="benefit-discount">20% OFF x 3 cuotas</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image benefit-image-logo" href="assets/convenios/atenas-gimnasio.png" target="_blank" rel="noopener"><img class="benefit-logo" src="assets/convenios/atenas-gimnasio-card.png" alt="Logo Atenas Gimnasio" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Atenas Gimnasio</h3>
+        </div>
+        <div class="benefit-icon">💪</div>
+      </div>
+      <div class="benefit-discount">10% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="deporte">
+      <a class="benefit-image" href="beneficios/Convenio Hugo Trainers Gimnasio.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Hugo Trainers Gimnasio.jpeg" alt="Convenio Hugo Trainers Gimnasio" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Deporte</p>
+          <h3>Hugo Trainers Gimnasio</h3>
+        </div>
+        <div class="benefit-icon">🏃</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio Oliva Casa de Comidas.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Oliva Casa de Comidas.jpeg" alt="Convenio Oliva Casa de Comidas" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>Oliva Casa de Comidas</h3>
+        </div>
+        <div class="benefit-icon">🍽️</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio Latte Cafeteria.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Latte Cafeteria.jpeg" alt="Convenio Latte Cafetería" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>Latte Cafetería</h3>
+        </div>
+        <div class="benefit-icon">☕</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="gastronomia">
+      <a class="benefit-image" href="beneficios/Convenio El Cielo.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio El Cielo.jpeg" alt="Convenio El Cielo" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Gastronomía</p>
+          <h3>El Cielo</h3>
+        </div>
+        <div class="benefit-icon">🍦</div>
+      </div>
+      <div class="benefit-discount">15% OFF potes</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="belleza">
+      <a class="benefit-image" href="beneficios/Convenio Only Makeuup.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Only Makeuup.jpeg" alt="Convenio Only Makeup" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Belleza</p>
+          <h3>Only Makeup</h3>
+        </div>
+        <div class="benefit-icon">💄</div>
+      </div>
+      <div class="benefit-discount">15% OFF productos</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="belleza">
+      <a class="benefit-image" href="beneficios/Convenio Nails Yas.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Nails Yas.jpeg" alt="Convenio Nails Yas" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Belleza</p>
+          <h3>Nails Yas</h3>
+        </div>
+        <div class="benefit-icon">💅</div>
+      </div>
+      <div class="benefit-discount">Beneficio en uñas</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Alto Drugstore y Le Bron Break Store.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Alto Drugstore y Le Bron Break Store.jpeg" alt="Convenio Alto Drugstore y Le Bon Break Store" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Alto Drugstore y Le Bon Break Store</h3>
+        </div>
+        <div class="benefit-icon">🛒</div>
+      </div>
+      <div class="benefit-discount">10% OFF desde $5000</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Katja Handmade.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Katja Handmade.jpeg" alt="Convenio Katja Handmade" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Katja Handmade</h3>
+        </div>
+        <div class="benefit-icon">🎁</div>
+      </div>
+      <div class="benefit-discount">10% OFF productos</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Carolina´s Closet.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Carolina´s Closet.jpeg" alt="Convenio Carolina's Closet" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Carolina's Closet</h3>
+        </div>
+        <div class="benefit-icon">👕</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio Estilo Runner.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio Estilo Runner.jpeg" alt="Convenio Estilo Runner" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Estilo Runner</h3>
+        </div>
+        <div class="benefit-icon">👟</div>
+      </div>
+      <div class="benefit-discount">15% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/Convenio C.E.C.jpeg" target="_blank" rel="noopener"><img src="beneficios/Convenio C.E.C.jpeg" alt="Convenio C.E.C." loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>C.E.C.</h3>
+        </div>
+        <div class="benefit-icon">🏪</div>
+      </div>
+      <div class="benefit-discount">13% OFF</div>
+    </div>
+
+    <div class="benefit-card hide" data-category="comercios">
+      <a class="benefit-image" href="beneficios/10-descuento-efectivo.pdf" target="_blank" rel="noopener"><img src="logo-unidos-cet3.png" alt="10% de descuento en efectivo" loading="lazy"/></a>
+      <div class="benefit-top">
+        <div>
+          <p class="benefit-category">Comercios</p>
+          <h3>Descuento en efectivo</h3>
+        </div>
+        <div class="benefit-icon">💵</div>
+      </div>
+      <div class="benefit-discount">10% OFF efectivo</div>
+      <a class="benefit-doc" href="beneficios/10-descuento-efectivo.pdf" target="_blank" rel="noopener">Ver PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTO -->
+<section id="proyecto">
+  <div class="project-wrap">
+    <div>
+      <p class="section-label">Gestión UNI2</p>
+      <h2 class="section-title">Una mutual organizada</h2>
+      <p class="section-sub">La web reúne las áreas principales de UNI2 para que socios, familias y comercios encuentren todo con claridad.</p>
+      <div class="project-lines">
+        <div class="project-line"><span class="project-dot"></span>Información ordenada</div>
+        <div class="project-line"><span class="project-dot"></span>Acceso simple</div>
+        <div class="project-line"><span class="project-dot"></span>Convenios visibles</div>
+        <div class="project-line"><span class="project-dot"></span>Comunidad conectada</div>
+      </div>
+    </div>
+    <div class="project-modules" aria-label="Áreas de gestión de UNI2">
+      <article class="project-module">
+        <div class="project-module-icon">👥</div>
+        <h3>Socios</h3>
+        <p>Alta, contacto, tipo de afiliación y vínculo con la comunidad CET 3.</p>
+      </article>
+      <article class="project-module">
+        <div class="project-module-icon">🎓</div>
+        <h3>Cursos</h3>
+        <p>Organización por año, división y turno para acompañar mejor a cada grupo.</p>
+      </article>
+      <article class="project-module">
+        <div class="project-module-icon">🏪</div>
+        <h3>Comercios</h3>
+        <p>Convenios cercanos y beneficios claros para quienes forman parte de UNI2.</p>
+      </article>
+      <article class="project-module">
+        <div class="project-module-icon">📅</div>
+        <h3>Eventos</h3>
+        <p>Actividades, encuentros y propuestas para fortalecer la participación.</p>
+      </article>
+      <article class="project-module">
+        <div class="project-module-icon">💳</div>
+        <h3>Cuotas</h3>
+        <p>Seguimiento simple del estado de afiliación y la cuota social.</p>
+      </article>
+      <article class="project-module">
+        <div class="project-module-icon">✅</div>
+        <h3>Pagos</h3>
+        <p>Registro claro de movimientos para una gestión más transparente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como">
+  <p class="section-label">Paso a paso</p>
+  <h2 class="section-title">Cómo funciona</h2>
+  <p class="section-sub">Unirte a UNI2 es simple, rápido y sin complicaciones.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h4>Completá el formulario</h4>
+      <p>Ingresá tus datos y los de tu grupo familiar en nuestra sede o en línea.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h4>Abonás la cuota social</h4>
+      <p>Una cuota mensual simbólica que te da acceso inmediato a todos los beneficios.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h4>Recibís tu credencial</h4>
+      <p>Tu carnet de afiliado para usar todos los servicios desde el primer día.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h4>¡Disfrutá!</h4>
+      <p>Accedé a descuentos, convenios y actividades pensadas para la comunidad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section id="noticias">
+  <p class="section-label">Comunidad</p>
+  <h2 class="section-title">Lo que estamos construyendo</h2>
+  <p class="section-sub">Una mutual pensada para ordenar, conectar y hacer más fácil la participación de todos.</p>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">🧩</div>
+      <div class="news-body">
+        <p class="news-date">Idea</p>
+        <h3>Todo más ordenado</h3>
+        <p>La información de socios, cursos, comercios y cuotas se piensa como un sistema claro y fácil de usar.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">🎨</div>
+      <div class="news-body">
+        <p class="news-date">Diseño</p>
+        <h3>Una identidad cercana</h3>
+        <p>Colores, secciones y mensajes trabajan juntos para que UNI2 se vea propia, joven y reconocible.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-accent"></div>
+      <div class="news-icon">🤝</div>
+      <div class="news-body">
+        <p class="news-date">Comunidad</p>
+        <h3>Un espacio para participar</h3>
+        <p>La web invita a sumarse, conocer beneficios y mantener el vínculo entre estudiantes, familias y escuela.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label">Hablemos</p>
+  <h2 class="section-title">Contacto y afiliación</h2>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-info-top">
+        <h3>Encontranos en la escuela</h3>
+        <div class="contact-row"><span class="ico">📍</span><p>Centro de Educación Técnica N° 3<br>General Roca, Río Negro</p></div>
+        <div class="contact-row"><span class="ico">🕗</span><p>Lunes a viernes: 8:00 a 17:00 hs<br>Sábados: 9:00 a 12:00 hs</p></div>
+        <div class="contact-row"><span class="ico">📞</span><p>(02941) 000-000</p></div>
+        <div class="contact-row"><span class="ico">✉️</span><p>mutual@cet3.edu.ar</p></div>
+        <div class="color-blocks"><div class="cblock"></div><div class="cblock"></div><div class="cblock"></div><div class="cblock"></div></div>
+      </div>
+    </div>
+    <div class="affiliation-card" id="afiliacion">
+      <h3>Solicitud de afiliación</h3>
+      <p>Completá tus datos para iniciar el alta en UNI2. La mutual revisa la solicitud y confirma la inscripción según el tipo de afiliación.</p>
+      <ul class="affiliation-list">
+        <li><span>1</span>DNI y datos personales del solicitante</li>
+        <li><span>2</span>Curso escolar o vínculo como adherente</li>
+        <li><span>3</span>Datos de contacto y confirmación</li>
+      </ul>
+      <button class="affiliation-open" type="button" data-open-affiliation>Iniciar afiliación</button>
+    </div>
+  </div>
+</section>
+
+<dialog class="affiliation-modal" id="affiliationModal" aria-labelledby="affiliationTitle">
+  <div class="affiliation-shell">
+    <aside class="affiliation-side">
+      <img class="logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+      <h3>Alta de socio UNI2</h3>
+      <p>La información cargada permite preparar la solicitud de afiliación y verificar el vínculo correspondiente con la comunidad UNI2.</p>
+    </aside>
+
+    <div class="affiliation-form-wrap">
+      <div class="affiliation-head">
+        <div>
+          <p>Formulario de inscripción</p>
+          <h2 id="affiliationTitle">Datos para afiliarte</h2>
+        </div>
+        <button class="modal-close" type="button" data-close-affiliation aria-label="Cerrar formulario">×</button>
+      </div>
+
+      <form class="affiliation-form" id="affiliationForm">
+        <div class="form-grid">
+          <div class="field field-full">
+            <label for="memberType">Tipo de afiliación</label>
+            <select id="memberType" name="memberType" required>
+              <option value="student">Alumno CET 3</option>
+              <option value="adherent">Adherente</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="studentName">Nombre y apellido</label>
+            <input id="studentName" name="studentName" type="text" autocomplete="name" required/>
+          </div>
+          <div class="field">
+            <label for="studentDni">DNI</label>
+            <input id="studentDni" name="studentDni" type="text" inputmode="numeric" pattern="[0-9]{7,8}" maxlength="8" placeholder="Sin puntos" required/>
+          </div>
+          <div class="field">
+            <label for="birthDate">Fecha de nacimiento</label>
+            <input id="birthDate" name="birthDate" type="date" required/>
+          </div>
+          <div class="field">
+            <label for="phone">Teléfono</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required/>
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" required/>
+          </div>
+          <div class="field school-field">
+            <label for="course">Curso</label>
+            <select id="course" name="course" data-required="student" required>
+              <option value="">Seleccionar</option>
+              <option>1° año</option>
+              <option>2° año</option>
+              <option>3° año</option>
+              <option>4° año</option>
+              <option>5° año</option>
+              <option>6° año</option>
+            </select>
+          </div>
+          <div class="field school-field">
+            <label for="division">División</label>
+            <input id="division" name="division" type="text" placeholder="Ej: 1ra, 2da, A" data-required="student" required/>
+          </div>
+          <div class="field school-field">
+            <label for="shift">Turno</label>
+            <select id="shift" name="shift" data-required="student" required>
+              <option value="">Seleccionar</option>
+              <option>Mañana</option>
+              <option>Tarde</option>
+              <option>Noche</option>
+            </select>
+          </div>
+          <div class="field school-field">
+            <label for="guardianName">Adulto responsable</label>
+            <input id="guardianName" name="guardianName" type="text" data-required="student" required/>
+          </div>
+          <div class="field school-field">
+            <label for="guardianDni">DNI responsable</label>
+            <input id="guardianDni" name="guardianDni" type="text" inputmode="numeric" pattern="[0-9]{7,8}" maxlength="8" placeholder="Sin puntos" data-required="student" required/>
+          </div>
+          <div class="field community-field is-hidden">
+            <label for="relationship">Vínculo con UNI2 / CET 3</label>
+            <input id="relationship" name="relationship" type="text" placeholder="Ej: exalumno, familiar, comercio, comunidad" data-required="community" disabled/>
+          </div>
+          <div class="field community-field is-hidden">
+            <label for="city">Localidad</label>
+            <input id="city" name="city" type="text" placeholder="General Roca" data-required="community" disabled/>
+          </div>
+          <div class="field community-field is-hidden">
+            <label for="paymentMethod">Forma de pago</label>
+            <select id="paymentMethod" name="paymentMethod" data-required="community" disabled>
+              <option value="">Seleccionar</option>
+              <option>Efectivo</option>
+              <option>Transferencia</option>
+              <option>A coordinar</option>
+            </select>
+          </div>
+          <div class="field community-field is-hidden">
+            <label for="referenceContact">Afiliado de referencia</label>
+            <input id="referenceContact" name="referenceContact" type="text" placeholder="Opcional" disabled/>
+          </div>
+          <div class="field field-full">
+            <label for="address">Domicilio</label>
+            <input id="address" name="address" type="text" autocomplete="street-address" required/>
+          </div>
+          <div class="field field-full community-field is-hidden">
+            <label for="reason">Motivo de afiliación</label>
+            <textarea id="reason" name="reason" placeholder="Contanos por qué querés sumarte como adherente" data-required="community" disabled></textarea>
+          </div>
+          <div class="field field-full">
+            <label for="notes">Observaciones</label>
+            <textarea id="notes" name="notes" placeholder="Alergias, autorizaciones o información que la mutual deba conocer"></textarea>
+          </div>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" required/>
+          <span>Confirmo que los datos cargados son correctos y autorizo a UNI2 Mutual Escolar CET 3 a contactarme para finalizar la afiliación.</span>
+        </label>
+
+        <p class="affiliation-status" id="affiliationStatus" role="status">Solicitud registrada. La mutual se comunicará para confirmar la afiliación.</p>
+
+        <div class="form-actions">
+          <button class="secondary" type="button" data-close-affiliation>Cancelar</button>
+          <button class="primary" type="submit">Enviar solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img class="logo-img" src="logo-unidos-cet3.png" alt="UNI2 Mutual Escolar CET 3"/>
+    <span class="footer-logo-text">UNI2 – Mutual Escolar CET 3</span>
+  </div>
+  <div class="footer-colors">
+    <div class="fc"></div><div class="fc"></div><div class="fc"></div><div class="fc"></div>
+  </div>
+  <p>© 2025 UNI2 Mutual Escolar CET N° 3 · General Roca, Río Negro</p>
+  <p>Hecho con ❤️ por y para la comunidad educativa del CET 3</p>
+</footer>
+
+<script>
+const benefitTabs = document.querySelectorAll('.benefit-tab');
+const benefitCards = document.querySelectorAll('.benefit-card');
+
+benefitTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const filter = tab.dataset.filter;
+
+    benefitTabs.forEach((item) => item.classList.remove('active'));
+    tab.classList.add('active');
+
+    benefitCards.forEach((card, index) => {
+      const show = card.dataset.category === filter;
+      card.classList.add('is-fading');
+
+      setTimeout(() => {
+        card.classList.toggle('hide', !show);
+        card.style.animationDelay = show ? `${index * 25}ms` : '0ms';
+        card.classList.remove('is-fading');
+      }, 160);
+    });
+  });
+});
+
+const affiliationModal = document.querySelector('#affiliationModal');
+const affiliationForm = document.querySelector('#affiliationForm');
+const affiliationStatus = document.querySelector('#affiliationStatus');
+const memberType = document.querySelector('#memberType');
+const schoolFields = document.querySelectorAll('.school-field');
+const communityFields = document.querySelectorAll('.community-field');
+const openAffiliationButtons = document.querySelectorAll('[data-open-affiliation]');
+const closeAffiliationButtons = document.querySelectorAll('[data-close-affiliation]');
+const affiliationMessages = {
+  student: 'Solicitud registrada. La mutual se comunicará para confirmar la afiliación del alumno.',
+  adherent: 'Solicitud registrada. La mutual revisará los datos y se comunicará para confirmar el alta como socio adherente.'
+};
+
+function setFieldGroupState(fields, isVisible, requiredKey) {
+  fields.forEach((field) => {
+    field.classList.toggle('is-hidden', !isVisible);
+
+    field.querySelectorAll('input, select, textarea').forEach((control) => {
+      control.disabled = !isVisible;
+      control.required = isVisible && control.dataset.required === requiredKey;
+    });
+  });
+}
+
+function updateAffiliationType() {
+  const isStudent = memberType.value === 'student';
+
+  setFieldGroupState(schoolFields, isStudent, 'student');
+  setFieldGroupState(communityFields, !isStudent, 'community');
+  affiliationStatus.textContent = affiliationMessages[memberType.value] || affiliationMessages.student;
+  affiliationStatus.classList.remove('show');
+}
+
+openAffiliationButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    affiliationStatus.classList.remove('show');
+    updateAffiliationType();
+
+    if (typeof affiliationModal.showModal === 'function') {
+      affiliationModal.showModal();
+      memberType.focus();
+      return;
+    }
+
+    window.location.hash = 'afiliacion';
+  });
+});
+
+closeAffiliationButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    affiliationModal.close();
+  });
+});
+
+affiliationModal.addEventListener('click', (event) => {
+  if (event.target === affiliationModal) {
+    affiliationModal.close();
+  }
+});
+
+affiliationForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  if (!affiliationForm.checkValidity()) {
+    affiliationForm.reportValidity();
+    return;
+  }
+
+  const submittedType = memberType.value;
+  affiliationForm.reset();
+  updateAffiliationType();
+  affiliationStatus.textContent = affiliationMessages[submittedType] || affiliationMessages.student;
+  affiliationStatus.classList.add('show');
+});
+
+memberType.addEventListener('change', updateAffiliationType);
+updateAffiliationType();
+</script>
+
+</body>
+</html>
 
